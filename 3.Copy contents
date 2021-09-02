@@ -1,0 +1,24 @@
+Write a C program using I/O system calls open(), read() & write() to copy contents of one file to another file
+Program Description: Assume that one.txt is well defined. What we want is to create a new file called two.txt and copy over all the contents of one.txt
+/////////////////////////////////////////////////////////////////////////////////
+/* PROGRAM -03 TEJAAL M ENG19CS0334*/
+#include<stdio.h>
+#include<unistd.h>
+#include<sys/types.h>
+#include<string.h>
+#include <fcntl.h>
+
+void main()
+{
+  char buff;
+  int fd,fd1;
+  fd=open("one.txt",O_RDONLY);
+  fd1=open("two.txt",O_WRONLY|O_CREAT);
+  while(read(fd,&buff,1))
+  write(fd1,&buff,1);
+  printf("The copy of a file is successed \n");
+  close(fd);
+  close(fd1);
+}
+/* SO IT BASICALLY OVER WRITES ON THE TEXT FILE 2 ,THAT IS IT DELETES THE CONTENT OF TEXT FILE 1 AND PRINTS A NEW SET TOF OUTPUT TO THE SECOND FILE  */
+/////////////////////////////////////////////////////////////////////////////////////////
