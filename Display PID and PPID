@@ -1,0 +1,28 @@
+Using fork(), create a child process. The child process prints its own process id and id of the parent and exits.
+The parent process waits for the child to finish and prints its own process id and the id of the child process and exits.
+///////////////////////////////////////
+/*second program  TEJAAL M ENG19CS0334 */
+#include<stdio.h>
+#include<stdlib.h>
+#include<sys/types.h>
+#include<unistd.h>
+#include<sys/wait.h>
+void  main()
+{
+  int pid;
+  pid=fork();
+  if(!pid)
+  {
+    printf("Child process...");
+    printf("\n\nChild PID : %d",getpid());
+    printf("\nParent PID : %d",getppid());
+    printf("\n\nFinished with child\n");
+   }
+  else
+  {
+    wait(NULL);
+    printf("\nParent process");
+    printf("\nPARENT PID : %d",getpid());
+    printf("\nChild PID : %d",pid); 
+  }
+}
