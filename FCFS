@@ -1,0 +1,44 @@
+/**********TEJAAL M ENG19CS0334
+0709 FCFS SCHEDULING PROGRAM TOFIND THE AVG TAT AND WT
+**************/
+
+#include<stdio.h>
+int main()
+{
+  int n,bt[10],wt[10],tat[10],avgwt=0,avgtat=0,i,j;
+  printf("enter total number of processes");
+  scanf("%d",&n);
+  
+  printf("\n enter process burst time \n");
+  for(i=0;i<n;i++)
+  {
+    printf("P[%d] ",i+1);
+    scanf("%d",&bt[i]);
+  }
+  wt[0]=0;//waiting for the first process is 0
+  for(i=1;i<n;i++)
+  {
+    wt[i]=0;
+    for(j=0;j<i;j++)
+    {
+      wt[i]=wt[i]+bt[j];
+    }
+  }
+  printf("\nprocess\t\tburst time\twaiting time\tturnaround_time\tresponse time\tcompletion time ");
+  for(i=0;i<n;i++)
+  {
+    tat[i]=bt[i]+wt[i];
+    avgwt+=wt[i];
+    avgtat+=tat[i];
+    printf("\nP[%d]\t\t%d\t\t%d\t\t%d\t\t%d\t\t%d",i+1,bt[i],wt[i],tat[i],wt[i],tat[i]);
+    //printf("\nProcess\t\tBurst Time\tWaiting Time\tTurnaround Time");
+  }
+  avgwt/=n;
+  avgtat/=n;
+  printf("\n average waiting time  %d ",avgwt);
+  printf("\n average turnaround time %d ",avgtat);
+  printf("\n average response time %d ",avgwt);
+  printf("\n average completion time %d ",avgtat);
+  return 0;
+}
+/*****since arrival time is 0,completion time is same as turnaround time and waiting time is same as response time*****/
